@@ -14,7 +14,7 @@ def fermats_little_theorem_test(num):
     
     for base in range(1, num):
         #print(base)
-        if ((base**(num-1))%num == 1):
+        if (MontLadder(base, (num-1), num) == 1):
             #print(base, " ...is 1")
             if (base == (num-1)):
                 print(num, " is a prime number or a Carmichael-number.")
@@ -22,4 +22,29 @@ def fermats_little_theorem_test(num):
             print(num, " is no prime number")
             break
 
+
+def MontLadder(a, k, mod):
+    # Formatting exponent k into a binary number
+    k_bin = format(k, 'b')
+
+
+    # Initializing x and y
+    x = 1
+    y = a % mod
+
+
+    # Loop 
+    for i in range(len(k_bin)):
+        if k_bin[i] == "0":
+            y = (x * y) % mod
+            x = pow(x, 2, mod)
+        elif k_bin[i] == "1":
+            x = (x * y) % mod
+            y = pow(y, 2, mod)
+        print(str(len(k_bin) - i - 1), ": x = ", str(x) + "; y = ", str(y))
+
+# Output: x
+    print("x = a^k =  " + str(x))
+
+# Calling the function
 fermats_little_theorem_test(num)
