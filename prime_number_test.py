@@ -1,15 +1,25 @@
-basis = 2;
+#--> Fermats-Little-Theorem-Test
+#-> Fermats little Theorem test for a number to be a prime number or a Carmichael-number.
 
-input = input("Geben Sie ihre zu testende Zahl ein:");
+# Input
+try: # a
+        num = int(input("Please enter your number to be tested: "))
+except Exception as e:
+        print("\nError: ", e)
 
-input = int(input);
+# Loop
+def fermats_little_theorem_test(num):
+    # Initializing
+    base = 2
+    
+    for base in range(1, num):
+        #print(base)
+        if ((base**(num-1))%num == 1):
+            #print(base, " ...is 1")
+            if (base == (num-1)):
+                print(num, " is a prime number or a Carmichael-number.")
+        else:
+            print(num, " is no prime number")
+            break
 
-for basis in range(1, input):
-    #print(basis)
-    if ((basis**(input-1))%input == 1):
-        #print(basis, " ...ergibt 1")
-        if (basis == (input-1)):
-            print(input, " ist eine Primzahl oder Carmichael-Zahl")
-    else:
-        print(input, " ist keine Primzahl")
-        break
+fermats_little_theorem_test(num)
